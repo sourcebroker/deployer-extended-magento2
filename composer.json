@@ -1,0 +1,29 @@
+{
+  "name": "sourcebroker/deployer-extended-magento2",
+  "description": "Deployment for Magento2 with deployer.org.",
+  "license": "MIT",
+  "keywords": [
+    "Magento2",
+    "deployer"
+  ],
+  "authors": [
+    {
+      "name": "Krystian Szymukowicz",
+      "email": "k.szymukowicz@gmail.com"
+    },
+    {
+      "name": "Karol Lamparski",
+      "email": "klamparski@gmail.com"
+    }
+  ],
+  "require": {
+    "sourcebroker/deployer-extended": "^5.0.0",
+    "sourcebroker/deployer-extended-media": "^2.0.0",
+    "sourcebroker/deployer-extended-database": "^2.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SourceBroker\\DeployerExtendedMagento2\\": "src/"
+    }
+  }
+}
