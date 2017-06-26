@@ -9,7 +9,6 @@ set('static_content_deploy_packages_default', []);
 set('static_content_deploy_languages_default', ['en_US']);
 
 
-
 set('web_path', 'pub/');
 
 set('shared_dirs', [
@@ -90,15 +89,17 @@ set('default_stage', function () {
     return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
 });
 
-set('db_default', [
-    'ignore_tables_out' => [],
-    'post_sql_in' => '',
-]);
-
 set('db_databases',
     [
         'database_default' => [
-            get('db_default'),
+            [
+                'ignore_tables_out' => [],
+                'post_sql_in' => '',
+                'post_sql_in_markers' => '
+                    UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/unsecure/base_url";
+                    UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/secure/base_url";'
+
+            ],
             function () {
                 return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getDatabaseConfig();
             }
