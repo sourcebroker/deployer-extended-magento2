@@ -30,6 +30,9 @@ task('deploy', [
     // Standard deployer deploy:vendors
     'deploy:vendors',
 
+    // Remove /var/.regenerate created after "composer install"
+    'deploy:magento:remove_var_regenerate',
+
     // Call "composer install" in /update folder as its separate project
     'deploy:magento:composer_install_for_update_folder',
 
@@ -50,15 +53,17 @@ task('deploy', [
     // Call "magento setup:upgrade"
     'magento:setup:upgrade',
 
-    //'deploy:copy_from_previous_release'
+    // Copy 'pub/static/adminhtml', 'pub/static/frontend' from previous release
+    'deploy:copy_dirs',
 
+    //
     'deploy:magento:clear_static_for_deployed',
 
     //
     'deploy:magento:bugfix_for_deployed_version_txt',
 
     //
-    'deploy:setup:static-content:deploy',
+    'magento:setup:static-content:deploy',
 
     // Set the IPs for maintenance mode
     'deploy:maintenance',

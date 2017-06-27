@@ -23,7 +23,6 @@ task('magento:setup:static-content:deploy', function () {
         $staticContentDeployLanguagesCmd . ' ' . $staticContentDeployPackagesCmd);
 })->desc('Static-content deploy');
 
-
 task('deploy:magento:clear_static_for_deployed', function () {
     $activeDir = test('[ -L {{deploy_path}}/release ]') ? get('deploy_path') . '/release' : get('deploy_path') . '/current';
     foreach (get('static_content_deploy_packages') as $staticFrontendFolder) {
@@ -41,15 +40,11 @@ task('deploy:magento:checkout_for_overwritten_htaccess', function () {
 
 task('deploy:magento:composer_install_for_update_folder', function () {
     run("cd {{release_path}} && {{bin/composer}} install -d {{release_path}}/update");
-})->desc('Installing vendors for magneto update app.');
+})->desc('Installing vendors for magneto update application.');
 
-task('deploy:vendors', function () {
-    $composer = get('bin/composer');
-    $envVars = get('env_vars') ? 'export ' . get('env_vars') . ' &&' : '';
-    run("cd {{release_path}} && $envVars $composer {{composer_options}}");
-    // check if this can be separate taskaa
+task('deploy:magento:remove_var_regenerate', function () {
     run("rm -rf {{release_path}}/var/.regenerate");
-})->desc('Installing vendors');
+})->desc('Remove /var/.regenerate');
 
 task('deploy:maintenance', function () {
     $filenameTmp = tempnam(__DIR__, '_deployer');
