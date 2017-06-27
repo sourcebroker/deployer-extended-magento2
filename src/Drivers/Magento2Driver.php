@@ -16,7 +16,7 @@ class Magento2Driver
      */
     public function getDatabaseConfig($absolutePathWithConfig = null)
     {
-        if(null === $absolutePathWithConfig) {
+        if (null === $absolutePathWithConfig) {
             $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
         }
         if (file_exists($absolutePathWithConfig)) {
@@ -45,7 +45,7 @@ class Magento2Driver
      */
     public function getInstanceName($absolutePathWithConfig = null)
     {
-        if(null === $absolutePathWithConfig) {
+        if (null === $absolutePathWithConfig) {
             $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
         }
         if (file_exists($absolutePathWithConfig)) {
