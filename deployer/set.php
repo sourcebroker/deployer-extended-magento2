@@ -88,11 +88,13 @@ set('default_stage', (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento
 set('db_databases',
     [
         'database_default' => [
-            'ignore_tables_out' => [],
-            'post_sql_in' => '',
-            'post_sql_in_markers' => '
-              UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/unsecure/base_url";
-              UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/secure/base_url";',
+            [
+                'ignore_tables_out' => [],
+                'post_sql_in' => '',
+                'post_sql_in_markers' => '
+                  UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/unsecure/base_url";
+                  UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/secure/base_url";',
+            ],
             function () {
                 return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getDatabaseConfig();
             }
