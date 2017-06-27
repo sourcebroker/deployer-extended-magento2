@@ -81,23 +81,25 @@ set('media',
     ]);
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
-set('db_instance', (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName());
-
+// TODO: change to closure after fix of deployer bug
 set('default_stage', (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName());
 
-set('db_databases',
-    [
+set('db_instance', function () {
+    return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
+});
+
+set('db_databases', function () {
+    return [
         'database_default' => [
+            get('db_defaults'),
             [
-                'ignore_tables_out' => [],
-                'post_sql_in' => '',
                 'post_sql_in_markers' => '
                   UPDATE core_config_data set value="{{firstDomainWithSchemeAndEndingSlash}}" WHERE path="web/unsecure/base_url";
                   UPDATE core_config_data set value="{{firstDomainWithSchemeAndEndingSlash}}" WHERE path="web/secure/base_url";',
             ],
             function () {
                 return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getDatabaseConfig();
-            }
+            },
         ]
-    ]
-);
+    ];
+});
