@@ -16,8 +16,9 @@ class Magento2Driver
      */
     public function getDatabaseConfig($absolutePathWithConfig = null)
     {
-        $absolutePathWithConfig = null === $absolutePathWithConfig ? getcwd() : $absolutePathWithConfig;
-        $absolutePathWithConfig = rtrim($absolutePathWithConfig, DIRECTORY_SEPARATOR);
+        if(null === $absolutePathWithConfig) {
+            $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
+        }
         if (file_exists($absolutePathWithConfig)) {
             /** @noinspection PhpIncludeInspection */
             $config = include $absolutePathWithConfig;
@@ -44,8 +45,9 @@ class Magento2Driver
      */
     public function getInstanceName($absolutePathWithConfig = null)
     {
-        $absolutePathWithConfig = null === $absolutePathWithConfig ? getcwd() : $absolutePathWithConfig;
-        $absolutePathWithConfig = rtrim($absolutePathWithConfig, DIRECTORY_SEPARATOR);
+        if(null === $absolutePathWithConfig) {
+            $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
+        }
         if (file_exists($absolutePathWithConfig)) {
             /** @noinspection PhpIncludeInspection */
             $config = include $absolutePathWithConfig;
