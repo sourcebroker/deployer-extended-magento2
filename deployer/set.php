@@ -64,7 +64,7 @@ set('clear_paths', [
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', [
         'index.php' => [
-            'entrypoint_filename' => get('web_path') . 'index.php',
+            'entrypoint_filename' => 'index.php',
         ],
     ]
 );
@@ -89,17 +89,18 @@ set('default_stage', function () {
     return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
 });
 
+set('db_default', [
+    'ignore_tables_out' => [],
+    'post_sql_in' => '',
+    'post_sql_in_markers' => '
+      UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/unsecure/base_url";
+      UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/secure/base_url";'
+]);
+
 set('db_databases',
     [
         'database_default' => [
-            [
-                'ignore_tables_out' => [],
-                'post_sql_in' => '',
-                'post_sql_in_markers' => '
-                    UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/unsecure/base_url";
-                    UPDATE core_config_data set value="{{domainsSeparatedByComma}}" WHERE path="web/secure/base_url";'
-
-            ],
+            get('db_default'),
             function () {
                 return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getDatabaseConfig();
             }
