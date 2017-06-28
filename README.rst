@@ -6,8 +6,6 @@ deployer-extended-magento2
 What does it do?
 ----------------
 
-Note! Work in progress. Use on your own risk.
-
 This package provides deploy task for deploying Magento2 with deployer (deployer.org) and additionally a tasks
 to synchronize database and media files.
 
@@ -45,6 +43,18 @@ Installation
       require __DIR__ . '/vendor/autoload.php';
       new \SourceBroker\DeployerExtendedMagento2\Loader();
 
+   | IMPORTANT NOTE!
+   | Because there is inclusion of '/vendor/autoload.php' inside deployer realm then sometimes there can be conflict
+     of deployer dependencies with you project dependencies. Quite often its about symfony/console version or
+     monolog/monolog version because they are most common between projects. In that case use deployer installed as
+     composer package and resolve the dependency problems on composer level. Example of error when you run "dep" command
+     and there are dependencies problems:
+
+     ::
+
+      Fatal error: Declaration of Symfony\Component\Console\Input\ArrayInput::hasParameterOption() must be compatible with Symfony\Component\Console\Input\InputInterface::hasParameterOption($values, $onlyParams = false) in /.../vendor/symfony/symfony/src/Symfony/Component/Console/Input/ArrayInput.php on line 190
+
+
 4) Remove task "deploy" from your deploy.php. Otherwise you will overwrite deploy task defined in
    deployer/deploy/task/deploy.php
 
@@ -61,15 +71,18 @@ Installation
 
     server('live', '111.111.111.111')
         ->user('www-data')
+        ->stage('live')
         ->set('public_urls', ['http://www.example.com/'])
         ->set('deploy_path', '/var/www/example.com.live');
 
     server('beta', '111.111.111.111')
         ->user('www-data')
+        ->stage('beta')
         ->set('public_urls', ['http://beta.example.com/'])
         ->set('deploy_path', '/var/www/example.com.beta');
 
     server('local', 'localhost')
+        ->stage('local')
         ->set('public_urls', ['http://example-com.dev/'])
         ->set('deploy_path', getcwd());
 
@@ -77,10 +90,7 @@ Installation
 Mind the declaration of server('local', 'localhost'); Its needed for database tasks to declare domain replacements,
 and path to store database dumps.
 
-Documentation
--------------
 
-Documentation in progress.....
 
 
 
