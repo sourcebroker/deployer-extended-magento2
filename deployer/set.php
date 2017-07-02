@@ -64,7 +64,7 @@ set('clear_paths', [
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', [
         'index.php' => [
-            'entrypoint_filename' => 'index.php',
+            'entrypoint_filename' => 'pub/index.php',
         ],
     ]
 );
