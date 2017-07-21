@@ -3,11 +3,12 @@
 namespace Deployer;
 
 set('disableMaintainceMode', false);
+
 // all packages by default
 set('static_content_deploy_packages_default', []);
+
 // default language by default
 set('static_content_deploy_languages_default', ['en_US']);
-
 
 set('web_path', 'pub/');
 
@@ -81,13 +82,16 @@ set('media',
     ]);
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
-// TODO: change to closure after fix of deployer bug
-set('default_stage', (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName());
+set('default_stage', function () {
+    (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
+});
 
+// Look https://github.com/sourcebroker/deployer-extended-database for docs
 set('db_instance', function () {
     return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
 });
 
+// Look https://github.com/sourcebroker/deployer-extended-database for docs
 set('db_databases', function () {
     return [
         'database_default' => [
