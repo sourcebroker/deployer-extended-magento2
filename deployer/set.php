@@ -83,7 +83,7 @@ set('media',
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
 set('default_stage', function () {
-    (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
+    return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
 });
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
