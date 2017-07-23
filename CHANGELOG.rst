@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+0.4.0
+~~~~~
+
+a) Update sourcebroker/deployer-extended-database to version 4.0.0
+
 0.3.0
 ~~~~~
 
