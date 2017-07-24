@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+0.5.0
+~~~~~
+
+a) [TASK] Make dependency to deployer/deployer-dist
+
 0.4.0
 ~~~~~
 
