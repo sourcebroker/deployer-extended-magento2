@@ -2,14 +2,11 @@
 
 namespace Deployer;
 
-set('disableMaintainceMode', false);
-
-// all packages by default
-set('static_content_deploy_packages_default', []);
-
-// default language by default
-set('static_content_deploy_languages_default', ['en_US']);
-
+set('static_content_deploy_frontend_themes', ['Magento/blank']);
+set('static_content_deploy_frontend_languages', ['en_US']);
+set('static_content_deploy_adminhtml_themes', ['Magento/backend']);
+set('static_content_deploy_adminhtml_languages', ['en_US']);
+set('magento_git_checkout_items', ['pub/.htaccess']);
 set('web_path', 'pub/');
 
 set('shared_dirs', [
@@ -28,12 +25,6 @@ set('shared_files', [
     'app/etc/env.php',
     'var/.setup_cronjob_status',
     'var/.update_cronjob_status',
-    'pub/auth/authorized_shared',
-]);
-
-set('copy_dirs', [
-    'pub/static/adminhtml',
-    'pub/static/frontend'
 ]);
 
 set('writable_dirs', [
@@ -42,6 +33,12 @@ set('writable_dirs', [
     ]
 );
 
+// The command "php bin/magento setup:upgrade" will not work without:
+// 'composer.json',
+// 'composer.lock',
+// List of files removed based on assumption that:
+// a) vhost points to /pub/
+// b) cron is run from CLI
 set('clear_paths', [
     '.git',
     '.gitignore',
@@ -53,13 +50,18 @@ set('clear_paths', [
     'CONTRIBUTING.md',
     'COPYING.txt',
     'Gruntfile.js.sample',
+    'Gruntfile.js',
     'index.php',
     'ISSUE_TEMPLATE.md',
     'LICENSE.txt',
     'LICENSE_AFL.txt',
     'nginx.conf.sample',
+    'package.json',
+    'package-lock.json',
     'package.json.sample',
     'php.ini.sample',
+    'pub/cron.php',
+    'pub/.user.ini'
 ]);
 
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs

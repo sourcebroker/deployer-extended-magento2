@@ -30,14 +30,8 @@ task('deploy', [
     // Standard deployer deploy:vendors
     'deploy:vendors',
 
-    // Remove /var/.regenerate created after "composer install"
-    'deploy:magento:remove_var_regenerate',
-
-    // Call "composer install" in /update folder as its separate project
-    'deploy:magento:composer_install_for_update_folder',
-
-    //
-    'deploy:magento:checkout_for_overwritten_htaccess',
+    // Git checkout for files overwritten while composer install for magento/magento2-base
+    'magento:deploy:git_checkout',
 
     // Standard deployer deploy:clear_paths
     'deploy:clear_paths',
@@ -53,20 +47,8 @@ task('deploy', [
     // Call "magento setup:upgrade"
     'magento:setup:upgrade',
 
-    // Copy 'pub/static/adminhtml', 'pub/static/frontend' from previous release
-    'deploy:copy_dirs',
-
-    //
-    'deploy:magento:clear_static_for_deployed',
-
-    //
-    'deploy:magento:bugfix_for_deployed_version_txt',
-
-    //
-    'magento:setup:static-content:deploy',
-
-    // Set the IPs for maintenance mode
-    'deploy:maintenance',
+    // Call "magento setup:static-content:deploy" with parameters for themes and languages
+    'magento:setup:static-content:deploy:extended',
 
     // Standard deployer symlink (symlink release/x/ to current/)
     'deploy:symlink',

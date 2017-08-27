@@ -91,7 +91,18 @@ Mind the declaration of server('local', 'localhost'); Its needed for database ta
 and path to store database dumps.
 
 
+Special tasks for Magento2
+-------------------------
 
+magento:deploy:git_checkout
++++++++++++++++++++++++++++
+
+If we install Magento2 with composer then we have some files in pub/ folder like '.htaccess' or 'index.php' which we
+sometimes want to change. Unfortunately during composer install, which is step after cloning repo, the pub/ files will
+be overwritten with files from vendor/magento/magento2-base.
+
+This task allows to do checkout for for files/folders defined in param 'git_checkout_items'. So if you have changes in
+pub/.htaccess it will be reverted. By default the 'git_checkout_items' param has item 'pub/.htaccess'.
 
 
 .. _sourcebroker/deployer-extended: https://github.com/sourcebroker/deployer-extended

@@ -2,6 +2,33 @@
 Changelog
 ---------
 
+0.6.0
+~~~~~
+
+a) [TASK][!!!BREAKING] Remove task "deploy:magento:bugfix_for_deployed_version_txt" as the problem was fixed in Magento2.
+
+b) [TASK][!!!BREAKING] Remove task "deploy:maintenance". Protecting deployment instances should be done by special modules.
+
+c) [TASK][!!!BREAKING] Rename task "magento:setup:static-content:deploy" to "magento:setup:static-content:deploy:extended"
+
+d) [TASK][!!!BREAKING] Remove task "deploy:magento:remove_var_regenerate" as the problem was fixed in Magento2.
+
+e) [TASK][!!!BREAKING] Rename task "deploy:magento:checkout_for_overwritten_htaccess" to "magento:deploy:git_checkout"
+
+f) [TASK] Add default settings for task magento:setup:static-content:deploy:extended
+   ::
+
+   set('static_content_deploy_frontend_themes', ['Magento/blank']);
+   set('static_content_deploy_frontend_languages', ['en_US']);
+   set('static_content_deploy_adminhtml_themes', ['Magento/backend']);
+   set('static_content_deploy_adminhtml_languages', ['en_US']);
+
+g) [TASK] Add deafult settings for task "magento:deploy:git_checkout":
+   ::
+
+   set('magento_git_checkout_items', ['pub/.htaccess']);
+
+
 0.5.0
 ~~~~~
 
