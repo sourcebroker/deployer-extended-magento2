@@ -16,9 +16,7 @@ class Magento2Driver
      */
     public function getDatabaseConfig($absolutePathWithConfig = null)
     {
-        if (null === $absolutePathWithConfig) {
-            $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
-        }
+        $absolutePathWithConfig = $this->getConfigFile($absolutePathWithConfig);
         if (file_exists($absolutePathWithConfig)) {
             /** @noinspection PhpIncludeInspection */
             $config = include $absolutePathWithConfig;
@@ -45,9 +43,7 @@ class Magento2Driver
      */
     public function getInstanceName($absolutePathWithConfig = null)
     {
-        if (null === $absolutePathWithConfig) {
-            $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
-        }
+        $absolutePathWithConfig = $this->getConfigFile($absolutePathWithConfig);
         if (file_exists($absolutePathWithConfig)) {
             /** @noinspection PhpIncludeInspection */
             $config = include $absolutePathWithConfig;
@@ -58,11 +54,30 @@ class Magento2Driver
             if ($instanceName) {
                 return strtolower($instanceName);
             } else {
-                throw new \Exception("Missing instance name in app/etc/env.php file. Instance key=>value should be on root level of array.");
+                throw new \Exception('Missing instance name in "' . $absolutePathWithConfig . '" file. Instance key=>value should be on root level of array.');
             }
         } else {
             throw new \Exception('Missing file with instance name. Looking for file: "' . $absolutePathWithConfig . '"');
         }
     }
 
+    /**
+     * Try config files fallback
+
+     * @param bool $absolutePathWithConfig
+     * @return bool|string
+     */
+    public function getConfigFile($absolutePathWithConfig = null)
+    {
+        // Try /app/etc/env.php first
+        if (null === $absolutePathWithConfig) {
+            $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
+            $config = include $absolutePathWithConfig;
+            // if /app/etc/env.php is empty then try /app/etc/env/unversioned.php as fallback
+            if (empty($config)) {
+                $absolutePathWithConfig = getcwd() . '/app/etc/env/unversioned.php';
+            }
+        }
+        return $absolutePathWithConfig;
+    }
 }
