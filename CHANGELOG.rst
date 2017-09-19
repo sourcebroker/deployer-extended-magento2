@@ -2,6 +2,17 @@
 Changelog
 ---------
 
+0.7.1
+~~~~~
+
+a) [DOCS] Update changelog
+
+
+0.7.0
+~~~~~
+
+a) [FEATURE] Add second default place to check config file which is out of git /app/etc/env/unversioned.php
+
 0.6.0
 ~~~~~
 
