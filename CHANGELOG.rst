@@ -2,14 +2,15 @@
 Changelog
 ---------
 
-0.8.0
-~~~~~
+dev-master
+~~~~~~~~~~
 
 a) [TASK] Use deployer-loader to load recipes.
 b) [TASK] Add PhpIncludeInspection to prevent warnings in IDE.
 c) [TASK][!!!] Update packages sourcebroker/deployer-extended, sourcebroker/deployer-extended-media,
    sourcebroker/deployer-extended-database, sourcebroker/deployer-loader. Add package sourcebroker/deployer-loader.
 d) [TASK] Add .gitignore with vendors/ and composer.lock.
+e) [TASK] Update docs.
 
 0.7.1
 ~~~~~
