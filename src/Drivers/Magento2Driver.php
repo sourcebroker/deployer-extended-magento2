@@ -72,6 +72,7 @@ class Magento2Driver
         // Try /app/etc/env.php first
         if (null === $absolutePathWithConfig) {
             $absolutePathWithConfig = getcwd() . '/app/etc/env.php';
+            /** @noinspection PhpIncludeInspection */
             $config = include $absolutePathWithConfig;
             // if /app/etc/env.php is empty then try /app/etc/env/unversioned.php as fallback
             if (empty($config)) {

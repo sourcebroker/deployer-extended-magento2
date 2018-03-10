@@ -6,6 +6,7 @@ Changelog
 ~~~~~
 
 a) [TASK] Use deployer-loader to load recipes.
+b) [TASK] Add PhpIncludeInspection to prevent warnings in IDE.
 
 0.7.1
 ~~~~~
