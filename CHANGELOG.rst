@@ -2,6 +2,11 @@
 Changelog
 ---------
 
+0.8.0
+~~~~~
+
+a) [TASK] Use deployer-loader to load recipes.
+
 0.7.1
 ~~~~~
 

@@ -2,20 +2,19 @@
 
 namespace SourceBroker\DeployerExtendedMagento2;
 
-use SourceBroker\DeployerExtended\Utility\FileUtility;
+use SourceBroker\DeployerLoader\Load;
 
 class Loader
 {
     public function __construct()
     {
         require_once 'recipe/common.php';
-
-        new \SourceBroker\DeployerExtendedDatabase\Loader();
-        new \SourceBroker\DeployerExtendedMedia\Loader();
-        new \SourceBroker\DeployerExtended\Loader();
-
-        FileUtility::requireFilesFromDirectoryReqursively(
-            dirname((new \ReflectionClass(\SourceBroker\DeployerExtendedMagento2\Loader::class))->getFileName()) . '/../deployer/'
+        new Load([
+                ['path' => 'vendor/sourcebroker/deployer-extended/deployer'],
+                ['path' => 'vendor/sourcebroker/deployer-extended-database/deployer'],
+                ['path' => 'vendor/sourcebroker/deployer-extended-media/deployer'],
+                ['path' => 'vendor/sourcebroker/deployer-extended-magento2/deployer']
+            ]
         );
     }
 }
