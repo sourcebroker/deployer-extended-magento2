@@ -20,8 +20,8 @@ k) [TASK][!!!] Change deploy tasks order / add new tasks for Magento 2.2.
 l) [TASK][!!!] Change name of "magento:deploy:git_checkout" to "magento:deploy:git-checkout" to follow magento convention.
 m) [TASK] Make "magento:deploy:git-checkout" to be run before "deploy:clear_paths".
 n) [TASK] Replace occurance 'pub' in deployer/set.php with {{web_path}}
-o) [TASK] Add default value for 'db_defaults'
-
+o) [TASK] Add default value for 'db_defaults'.
+p) [TASK] Change naming from 'db_defaults' to 'db_default'.
 
 0.7.1
 ~~~~~
