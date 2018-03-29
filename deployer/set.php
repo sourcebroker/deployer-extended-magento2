@@ -109,3 +109,19 @@ set('db_databases', function () {
         ]
     ];
 });
+
+// Look https://github.com/sourcebroker/deployer-bulk-tasks for docs
+set('bulk_tasks', [
+    'magento' => [
+        'prefix' => 'magento',
+        'binary' => './bin/magento',
+        'command_fallback' => '
+                    app:config:import Import data from shared configuration files to appropriate data storage
+                    cache:flush Flushes cache storage used by cache type(s)
+                    setup:di:compile Generates DI configuration and all missing classes that can be auto-generated
+                    setup:db-schema:upgrade Installs and upgrades the DB schema
+                    setup:db-data:upgrade Installs and upgrades data in the DB
+                ',
+    ]
+]);
+require('./vendor/sourcebroker/deployer-bulk-tasks/src/BulkTasks.php');
