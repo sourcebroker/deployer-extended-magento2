@@ -6,9 +6,9 @@ set('static_content_deploy_frontend_themes', ['Magento/blank']);
 set('static_content_deploy_frontend_languages', ['en_US']);
 set('static_content_deploy_adminhtml_themes', ['Magento/backend']);
 set('static_content_deploy_adminhtml_languages', ['en_US']);
-set('magento_git_checkout_items', ['pub/.htaccess']);
 set('web_path', 'pub/');
 
+set('magento_git_checkout_items', ['{{web_path}}.htaccess', '{{web_path}}index.php']);
 set('shared_dirs', [
         '{{web_path}}media',
         'var/backups',
@@ -30,22 +30,19 @@ set('shared_files', [
 
 set('writable_dirs', [
         'var',
-        'pub/media',
-        'pub/static',
+        '{{web_path}}media',
+        '{{web_path}}static',
     ]
 );
 
 // The command "php bin/magento setup:upgrade" will not work without:
 // 'composer.json',
 // 'composer.lock',
-// List of files removed based on assumption that:
-// a) vhost points to /pub/
-// b) cron is run from CLI
+// List of files removed based on assumption that cron is run from CLI
 set('clear_paths', [
     '.git',
     '.gitignore',
     '.gitattributes',
-    '.htaccess',
     '.htaccess.sample',
     '.travis.yml',
     'CHANGELOG.md',
@@ -62,14 +59,19 @@ set('clear_paths', [
     'package-lock.json',
     'package.json.sample',
     'php.ini.sample',
-    'pub/cron.php',
-    'pub/.user.ini'
+    '{{web_path}}cron.php',
+    '{{web_path}}.user.ini'
 ]);
+
+// No need to .htaccess in root when web_path is used
+if(get('web_path')) {
+    add('clear_paths', ['.htaccess']);
+}
 
 // Look on https://github.com/sourcebroker/deployer-extended#buffer-start for docs
 set('buffer_config', [
         'index.php' => [
-            'entrypoint_filename' => 'pub/index.php',
+            'entrypoint_filename' => get('web_path') . 'index.php',
         ],
     ]
 );
