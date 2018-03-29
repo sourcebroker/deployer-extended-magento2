@@ -15,6 +15,7 @@ f) [TASK] Move "magento:deploy:git_checkout" and "magento:setup:static-content:d
 e) [BUGFIX] Add "area" parameter to "magento:setup:static-content:deploy:extended".
 f) [TASK] Pass language as parameter of setup:static-content:deploy command.
 g) [FEATURE] Add "deployer-bulk-tasks". Remove standard magento tasks file.
+h) [TASK] Extend "shared_files" and "writable_dirs".
 
 0.7.1
 ~~~~~

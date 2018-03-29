@@ -23,13 +23,15 @@ set('shared_dirs', [
 
 set('shared_files', [
     'app/etc/env.php',
+    'var/.maintenance.ip',
     'var/.setup_cronjob_status',
     'var/.update_cronjob_status',
 ]);
 
 set('writable_dirs', [
         'var',
-        'pub',
+        'pub/media',
+        'pub/static',
     ]
 );
 
