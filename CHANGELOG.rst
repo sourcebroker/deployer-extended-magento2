@@ -16,6 +16,8 @@ e) [BUGFIX] Add "area" parameter to "magento:setup:static-content:deploy:extende
 f) [TASK] Pass language as parameter of setup:static-content:deploy command.
 g) [FEATURE] Add "deployer-bulk-tasks". Remove standard magento tasks file.
 h) [TASK] Extend "shared_files" and "writable_dirs".
+i) [TASK][!!!] Change deploy tasks order / add new tasks for Magento 2.2.
+
 
 0.7.1
 ~~~~~
