@@ -17,6 +17,8 @@ h) [TASK] Pass language as parameter of setup:static-content:deploy command.
 i) [FEATURE] Add "deployer-bulk-tasks". Remove standard magento tasks file.
 j) [TASK] Extend "shared_files" and "writable_dirs".
 k) [TASK][!!!] Change deploy tasks order / add new tasks for Magento 2.2.
+l) [TASK][!!!] Change name of "magento:deploy:git_checkout" to "magento:deploy:git-checkout" to follow magento convention.
+l) [TASK] Make "magento:deploy:git-checkout" to be run before "deploy:clear_paths".
 
 
 0.7.1

@@ -30,15 +30,15 @@ task('deploy', [
     // Standard Deployer "deploy:vendors" command.
     'deploy:vendors',
 
+    // Git checkout for files overwritten while composer install for magento/magento2-base
+    'magento:deploy:git-checkout',
+
     // Standard Deployer "deploy:clear_paths" command.
     'deploy:clear_paths',
 
     // Clear php cli cache.
     // Read more on https://github.com/sourcebroker/deployer-extended#php-clear-cache-cli
     'php:clear_cache_cli',
-
-    // Git checkout for files overwritten while composer install for magento/magento2-base
-    'magento:deploy:git_checkout',
 
     // Standard Magento "setup:di:compile" command.
     'magento:setup:di:compile',
@@ -51,10 +51,10 @@ task('deploy', [
     'buffer:start',
 
     // Standard Magento "setup:db:schema:upgrade" command.
-    'magento:setup:db:schema:upgrade',
+    'magento:setup:db-schema:upgrade',
 
     // Standard Magento "setup:db:data:upgrade" command.
-    'magento:setup:db:data:upgrade',
+    'magento:setup:db-data:upgrade',
 
     // Standard Magento "app:config:import" command.
     'magento:app:config:import',
