@@ -11,6 +11,10 @@ c) [TASK][!!!] Update packages sourcebroker/deployer-extended, sourcebroker/depl
    sourcebroker/deployer-extended-database, sourcebroker/deployer-loader. Add package sourcebroker/deployer-loader.
 d) [TASK] Add .gitignore with vendors/ and composer.lock.
 e) [TASK] Update docs.
+f) [TASK] Move "magento:deploy:git_checkout" and "magento:setup:static-content:deploy:extended" to separate files/folders.
+e) [BUGFIX] Add "area" parameter to "magento:setup:static-content:deploy:extended".
+f) [TASK] Pass language as parameter of setup:static-content:deploy command.
+
 
 0.7.1
 ~~~~~
