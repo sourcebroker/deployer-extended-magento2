@@ -12,11 +12,11 @@ c) [TASK][!!!] Update packages sourcebroker/deployer-extended, sourcebroker/depl
 d) [TASK] Add .gitignore with vendors/ and composer.lock.
 e) [TASK] Update docs.
 f) [TASK] Move "magento:deploy:git_checkout" and "magento:setup:static-content:deploy:extended" to separate files/folders.
-e) [BUGFIX] Add "area" parameter to "magento:setup:static-content:deploy:extended".
-f) [TASK] Pass language as parameter of setup:static-content:deploy command.
-g) [FEATURE] Add "deployer-bulk-tasks". Remove standard magento tasks file.
-h) [TASK] Extend "shared_files" and "writable_dirs".
-i) [TASK][!!!] Change deploy tasks order / add new tasks for Magento 2.2.
+g) [BUGFIX] Add "area" parameter to "magento:setup:static-content:deploy:extended".
+h) [TASK] Pass language as parameter of setup:static-content:deploy command.
+i) [FEATURE] Add "deployer-bulk-tasks". Remove standard magento tasks file.
+j) [TASK] Extend "shared_files" and "writable_dirs".
+k) [TASK][!!!] Change deploy tasks order / add new tasks for Magento 2.2.
 
 
 0.7.1
