@@ -101,7 +101,7 @@ set('db_instance', function () {
 set('db_databases', function () {
     return [
         'database_default' => [
-            get('db_defaults'),
+            get('db_defaults', []),
             [
                 'post_sql_in_markers' => '
                   UPDATE core_config_data set value="{{firstDomainWithSchemeAndEndingSlash}}" WHERE path="web/unsecure/base_url";
