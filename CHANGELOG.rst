@@ -2,8 +2,8 @@
 Changelog
 ---------
 
-dev-master
-~~~~~~~~~~
+1.0.0.
+~~~~~~
 
 a) [TASK] Use deployer-loader to load recipes.
 b) [TASK] Add PhpIncludeInspection to prevent warnings in IDE.

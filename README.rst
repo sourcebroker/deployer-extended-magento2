@@ -62,25 +62,24 @@ Installation
 
     set('repository', 'git@my-git:my-project.git');
 
-    server('live', '111.111.111.111')
+    host('live')
+        ->hostname('111.111.111.111')
         ->user('www-data')
-        ->stage('live')
         ->set('public_urls', ['http://www.example.com/'])
         ->set('deploy_path', '/var/www/example.com.live');
 
-    server('beta', '111.111.111.111')
+    host('beta')
+        ->hostname('111.111.111.111')
         ->user('www-data')
-        ->stage('beta')
         ->set('public_urls', ['http://beta.example.com/'])
         ->set('deploy_path', '/var/www/example.com.beta');
 
-    server('local', 'localhost')
-        ->stage('local')
-        ->set('public_urls', ['http://example-com.dev/'])
+    host('local')
+        ->set('public_urls', ['http://example-com.ddev.site/'])
         ->set('deploy_path', getcwd());
 
 
-Mind the declaration of server('local', 'localhost'); Its needed for database tasks to declare domain replacements,
+Mind the declaration of host('local'); Its needed for database tasks to declare domain replacements,
 and path to store database dumps.
 
 
