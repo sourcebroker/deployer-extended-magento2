@@ -7,15 +7,20 @@ set('static_content_deploy_frontend_languages', ['en_US']);
 set('static_content_deploy_adminhtml_themes', ['Magento/backend']);
 set('static_content_deploy_adminhtml_languages', ['en_US']);
 set('web_path', 'pub/');
-
+set('branch_detect_to_deploy', false);
+set('allow_anonymous_stats', false);
+set('default_timeout', 900);
 set('magento_git_checkout_items', ['{{web_path}}.htaccess', '{{web_path}}index.php']);
+
 set('shared_dirs', [
         '{{web_path}}media',
         'var/backups',
         'var/composer_home',
         'var/importexport',
+        'var/import',
         'var/import_history',
         'var/log',
+        'var/report',
         'var/session',
         'var/tmp'
     ]
@@ -40,14 +45,19 @@ set('writable_dirs', [
 // 'composer.lock',
 // List of files removed based on assumption that cron is run from CLI
 set('clear_paths', [
+    '.editorconfig',
     '.git',
     '.gitignore',
     '.gitattributes',
     '.htaccess.sample',
+    '.nvmrc',
     '.travis.yml',
+    'bs-config.js',
     'CHANGELOG.md',
     'CONTRIBUTING.md',
     'COPYING.txt',
+    'dev',
+    'grunt-config.json',
     'Gruntfile.js.sample',
     'Gruntfile.js',
     'index.php',
@@ -64,7 +74,7 @@ set('clear_paths', [
 ]);
 
 // No need to .htaccess in root when web_path is used
-if(get('web_path')) {
+if (get('web_path')) {
     add('clear_paths', ['.htaccess']);
 }
 
@@ -77,6 +87,10 @@ set('buffer_config', [
 );
 
 // Look https://github.com/sourcebroker/deployer-extended-media for docs
+set('media_allow_push_live', false);
+set('media_allow_copy_live', false);
+set('media_allow_link_live', false);
+set('media_allow_pull_live', false);
 set('media',
     [
         'filter' => [
@@ -93,11 +107,9 @@ set('default_stage', function () {
 });
 
 // Look https://github.com/sourcebroker/deployer-extended-database for docs
-set('db_instance', function () {
-    return (new \SourceBroker\DeployerExtendedMagento2\Drivers\Magento2Driver)->getInstanceName();
-});
-
-// Look https://github.com/sourcebroker/deployer-extended-database for docs
+set('db_allow_push_live', false);
+set('db_allow_pull_live', false);
+set('db_allow_copy_live', false);
 set('db_databases', function () {
     return [
         'database_default' => [
@@ -113,6 +125,12 @@ set('db_databases', function () {
         ]
     ];
 });
+
+// Look https://github.com/sourcebroker/deployer-extended-database#db-dumpclean for docs
+set('db_dumpclean_keep', [
+    '*' => 5,
+    'live' => 10,
+]);
 
 // Look https://github.com/sourcebroker/deployer-bulk-tasks for docs
 set('bulk_tasks', [

@@ -53,9 +53,8 @@ class Magento2Driver
             }
             if ($instanceName) {
                 return strtolower($instanceName);
-            } else {
-                throw new \Exception('Missing instance name in "' . $absolutePathWithConfig . '" file. Instance key=>value should be on root level of array.');
             }
+            throw new \Exception('Missing instance name in "' . $absolutePathWithConfig . '" file. Instance key=>value should be on root level of array.');
         } else {
             throw new \Exception('Missing file with instance name. Looking for file: "' . $absolutePathWithConfig . '"');
         }

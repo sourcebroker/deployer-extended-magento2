@@ -22,6 +22,7 @@ m) [TASK] Make "magento:deploy:git-checkout" to be run before "deploy:clear_path
 n) [TASK] Replace occurance 'pub' in deployer/set.php with {{web_path}}
 o) [TASK] Add default value for 'db_defaults'.
 p) [TASK] Change naming from 'db_defaults' to 'db_default'.
+r) [TASK][BREAKING] Update stack of deplopyer-*, add deployer-instance and modify deploy flow.
 
 0.7.1
 ~~~~~
